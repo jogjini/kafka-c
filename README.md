@@ -15,14 +15,8 @@ $ apt install librdkafka-dev
 # Run Kafka and create topic
 ## Run zookeeper and kafka servers
 <p>Go to the main folder of Kafka that you have installed and follow these steps : <br>
-  Run Zookeeper server :
-```shell
- kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties 
-  ```
-Run Kafka server : 
-  ```console 
-  kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties
-  ```
+Run Zookeeper server : kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties <br>
+Run Kafka server :   kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties <br>
 You can edit zookeeper.properties and server.properties according to your needs <br></p>
 ## Create a new topic
 <p>
@@ -35,10 +29,11 @@ You can edit zookeeper.properties and server.properties according to your needs 
 make all
 
 ## Run producer 
-./producer localhost:9092 topic-name
+./producer localhost:9092 topic-name data_file_path
 
 ## Run consumer
 ./consumer localhost:9092 groupid topic-name
+
 
 
 
