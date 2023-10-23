@@ -87,29 +87,32 @@ int main(int argc, char **argv) {
     char buf[512];         /* Message value temporary buffer */
     const char *brokers;   /* Argument: broker list */
     const char *topic;     /* Argument: topic to produce to */
+    const char *file_path;
 
     /*
      * Argument validation
      */
-    if (argc != 3) {
-        fprintf(stderr, "%% Usage: %s <broker> <topic>\n", argv[0]);
+    if (argc != 4) {
+        fprintf(stderr, "%% Usage: %s <broker> <topic> <file_path>\n", argv[0]);
         return 1;
     }
 
-    // Load data file
-    FILE * ais_data = fopen("data/ais_data.csv", "rb");
-
-    if (ais_data == NULL){
-        fprintf(stderr, "Data file hasn't open properly or doesn't exist\n");
-        return 1;
-    }
 
 
 
 
     brokers = argv[1];
     topic   = argv[2];
+    file_path = argv[3];
 
+
+    // Load data file
+    FILE * ais_data = fopen(file_path, "rb");
+
+    if (ais_data == NULL){
+        fprintf(stderr, "Data file hasn't open properly or doesn't exist\n");
+        return 1;
+    }
 
     /*
      * Create Kafka client configuration place-holder
