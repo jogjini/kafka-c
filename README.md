@@ -16,7 +16,7 @@ $ apt install librdkafka-dev
 ## Run zookeeper and kafka servers
 <p>Go to the main folder of Kafka that you have installed and follow these steps : <br>
   Run Zookeeper server :
-```console
+```shell
  kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties 
   ```
 Run Kafka server : 
