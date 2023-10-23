@@ -18,6 +18,7 @@ $ apt install librdkafka-dev
 Run Zookeeper server : kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties <br>
 Run Kafka server :   kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties <br>
 You can edit zookeeper.properties and server.properties according to your needs <br></p>
+
 ## Create a new topic
 <p>
   You can create a new topic on your cluster using the following command : <br>
