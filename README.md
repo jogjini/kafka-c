@@ -71,15 +71,15 @@ The important parameter here is "max.message.byte", which specifies the maximum 
 ## How to run the program
 ### Compile files 
 ```bash
-make all
+berlinMOD-Kafka/make all
 ```
 ### Run producer
 ```bash
-./assemble trip_instants.csv largeMessage
+./berlinMOD-Kafka/assemble trip_instants.csv largeMessage
 ```
 ### Run consumer
 ```bash
-./clip localhost:9092 group1 largeMessage
+./berlinMOD-Kafka/clip localhost:9092 group1 largeMessage
 ```
 
    
