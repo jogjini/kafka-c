@@ -19,7 +19,7 @@ $ apt install librdkafka-dev
 
 # Run Kafka and create topic
 ## Run zookeeper and kafka servers
-To be able to use a Kafka topic with a server, you have to start the servers first. Go to the main folder of the Kafka Servers that you have installed in the first step and follow these steps : 
+To be able to use a Kafka topic, you have to start the servers first. Go to the main folder of the Kafka Servers that you have installed in the first step and follow these steps : 
 First run Zookeeper server : 
   ```bash
 kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties 
