@@ -28,7 +28,12 @@ Second Run Kafka server :
 ```bash
 kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties
 ```
-If you are having trouble with running these scripts, try running them in "sudo" mode.
+If you are having trouble with running these scripts, try running them with "sudo chmod +x". Example :
+  ```bash
+kafka_2.12-3.6.0 % sudo chmod +x ./bin/zookeeper-server-start.sh config/zookeeper.properties
+```
+
+
 To shut down the servers after you are finished, run command+c on the Kafka server first and then do the same for the zookeeper server.
 
 ## Create a new topic
