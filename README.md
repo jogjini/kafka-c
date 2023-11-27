@@ -68,7 +68,7 @@ To be able to execute the program, you will have to start the Kafka servers firs
 ```
 The important parameter here is "max.message.byte", which specifies the maximum lenght of the messages passing through the topic.
 
-##How to run the program
+## How to run the program
 ### Compile files 
 ```bash
 make all
