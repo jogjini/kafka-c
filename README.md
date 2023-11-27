@@ -75,7 +75,7 @@ berlinMOD-Kafka/make all
 ```
 ### Run producer
 ```bash
-./berlinMOD-Kafka/assemble trip_instants.csv largeMessage
+./berlinMOD-Kafka/assemble berlinMOD-Kafka/trip_instants.csv largeMessage
 ```
 ### Run consumer
 ```bash
