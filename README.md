@@ -22,7 +22,8 @@ You can edit zookeeper.properties and server.properties according to your needs 
 ## Create a new topic
 <p>
   You can create a new topic on your cluster using the following command : <br>
-  kafka_2.12-3.6.0 % bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic topic-name
+  ```bash
+  kafka_2.12-3.6.0 % bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic topic-name```
 </p>
 
 # Run the producer and consumer
