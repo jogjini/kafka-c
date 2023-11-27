@@ -5,19 +5,30 @@ This program is  reads data from a file and sends it to the kafka topic of your 
 
 
 # Install Kafka
-You can install kafka from the apache kafka website : https://kafka.apache.org/downloads 
-## Install kafka C/C++ library 
+## Install Kafka Servers FIRST !
+You can install kafka servers from the apache kafka website : https://kafka.apache.org/downloads 
+## Then install kafka C/C++ library 
 ### MacOS 
+```bash
 $ brew install librdkafka
+```
 ### Debian-Ubuntu
+```bash
 $ apt install librdkafka-dev
+```
 
 # Run Kafka and create topic
 ## Run zookeeper and kafka servers
-<p>Go to the main folder of Kafka that you have installed and follow these steps : <br>
-Run Zookeeper server : kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties <br>
-Run Kafka server :   kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties <br>
-You can edit zookeeper.properties and server.properties according to your needs </p>
+To be able to use a Kafka topic with a server, you have to start the servers first. Go to the main folder of the Kafka Servers that you have installed in the first step and follow these steps : 
+First run Zookeeper server : 
+  ```bash
+kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties 
+```
+Second Run Kafka server :   
+```bash
+kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties 
+```
+If you are having trouble with running these scripts, try running them in "sudo" mode.
 
 ## Create a new topic
 
@@ -29,13 +40,18 @@ You can edit zookeeper.properties and server.properties according to your needs 
 
 # Run the producer and consumer
 ## Compile files 
+```bash
 make all
+```
 
 ## Run producer 
+```bash
 ./producer localhost:9092 topic-name data_file_path
-
+```
 ## Run consumer
+```bash
 ./consumer localhost:9092 groupid topic-name
+```
 
 
 
