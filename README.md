@@ -22,11 +22,11 @@ $ apt install librdkafka-dev
 To be able to use a Kafka topic, you have to start the servers first. Go to the main folder of the Kafka Servers that you have installed in the first step and follow these steps : 
 First run Zookeeper server : 
   ```bash
-kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties &
+kafka_2.12-3.6.0 % ./bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 Second Run Kafka server :   
 ```bash
-kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties &
+kafka_2.12-3.6.0 % ./bin/kafka-server-start.sh config/server.properties
 ```
 If you are having trouble with running these scripts, try running them in "sudo" mode.
 To shut down the servers after you are finished, run command+c on the Kafka server first and then do the same for the zookeeper server.
