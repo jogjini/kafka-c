@@ -34,6 +34,8 @@
 
 #include "initialize_kafka.h"
 
+#define NO_RECORDS_BATCH 100000
+
 static volatile sig_atomic_t run = 1;
 
 /**
@@ -89,12 +91,12 @@ int main(int argc, char **argv)
     char * line = NULL;
     size_t len = 0;
     ssize_t read;
+    getline(&line, &len, ais_data);
+    printf("Sending data to the following topic : %s \n ", topic);
 
+  printf("  one '*' marker every %d lines sent\n", NO_RECORDS_BATCH);
 
-    //skip first line
-    read = getline(&line, &len, ais_data);
-
-    printf("Sending ais_data to the following topic : %s \n ", topic);
+    int counter = 0;
 
     while (run && (read = getline(&line, &len, ais_data))!=-1 )
     {
@@ -104,6 +106,17 @@ int main(int argc, char **argv)
         /* Empty line: only serve delivery reports */
         rd_kafka_poll(rk, 0 /*non-blocking */);
         continue;
+      }
+
+      if (counter%NO_RECORDS_BATCH==0) {
+
+        printf("*");
+        fflush(stdout);
+      }
+
+      if (counter%10000==0){
+        rd_kafka_flush(rk, 10 );
+        rd_kafka_poll(rk, 10 );
       }
 
       /*
@@ -170,7 +183,7 @@ int main(int argc, char **argv)
          * to make sure previously produced messages have their
          * delivery report callback served (and any other callbacks
          * you register). */
-        rd_kafka_poll(rk, 0 /*non-blocking*/);
+        counter++;
     }
 
   rd_kafka_producev(

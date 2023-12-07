@@ -112,6 +112,12 @@ int main(int argc, char **argv)
   clock_t t;
   t = clock();
 
+  rk = initialize_producer("localhost:9092");
+  if (rk == NULL)
+  {
+    printf(" KAFKA CLIENT HAS NOT CONFIGURED PROPERLY \n ");
+    return 1;
+  }
   /* Allocate space to build the trips */
   trip_output_record trips[MAX_TRIPS] = {0};
   /* Number of trips */
@@ -233,7 +239,7 @@ int main(int argc, char **argv)
   }
 
   /* Write to kafka buffer */
-  rk = initialize_producer("localhost:9092");
+
 
   if (rk == NULL)
   {

@@ -7,6 +7,6 @@ consumer: clip_kafka.c ../initialize_kafka.h
 	gcc ${FLAGS} ${consumer_files} -o clip ${LINKS}
 
 producer: assemble_kafka.c ../initialize_kafka.h
-	gcc ${FLAGS} $(producer_files) -o assemble ${LINKS}
+	gcc ${FLAGS} ${producer_files} -o assemble ${LINKS}
 
 all : consumer producer

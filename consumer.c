@@ -33,7 +33,6 @@
  */
 
 #include <time.h>
-#include "process_messages.h"
 #include "initialize_kafka.h"
 
 
@@ -65,7 +64,7 @@ int main (int argc, char **argv)
   {
     fprintf(stderr,
             "%% Usage: "
-            "%s <broker> <group.id> <topic1> <topic2>..\n",
+            "%s <broker> <group.id> <topic>..\n",
             argv[0]);
     return 1;
   }
@@ -129,7 +128,7 @@ int main (int argc, char **argv)
 
       continue;
     }
-
+    printf("%s\n", (char*)rkm->payload);
     fprintf(newfile,"%.*s", (int)rkm->len , (const char *)rkm->payload);
 
     rd_kafka_message_destroy(rkm);

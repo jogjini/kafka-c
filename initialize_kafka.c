@@ -174,6 +174,21 @@ rd_kafka_t* initialize_producer(const char* hostname)
     fprintf(stderr, "%s\n", errstr);
     return NULL;
   }
+
+  if (rd_kafka_conf_set(conf, "queue.buffering.max.messages", "10000000", errstr,
+                        sizeof(errstr)) != RD_KAFKA_CONF_OK)
+  {
+    fprintf(stderr, "%s\n", errstr);
+    return NULL;
+  }
+
+  if (rd_kafka_conf_set(conf, "linger.ms", "500", errstr,
+                        sizeof(errstr)) != RD_KAFKA_CONF_OK)
+  {
+    fprintf(stderr, "%s\n", errstr);
+    return NULL;
+  }
+
   /* Set the delivery report callback.
    * This callback will be called once per message to inform
    * the application if delivery succeeded or failed.

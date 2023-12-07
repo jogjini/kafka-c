@@ -2,9 +2,9 @@ FLAGS= -L/usr/include/librdkafka
 LINKS = -lrdkafka
 
 shared_files = initialize_kafka.c
-consumer_files = consumer.c process_messages.c
+consumer_files = consumer.c
 producer_files = producer.c
-consumer: consumer.c process_messages.h initialize_kafka.h
+consumer: consumer.c  initialize_kafka.h
 	gcc ${FLAGS} ${consumer_files} ${shared_files} -o consumer ${LINKS}
 
 producer: producer.c initialize_kafka.h

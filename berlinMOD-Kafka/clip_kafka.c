@@ -61,7 +61,7 @@
 
 
 /* Maximum length in characters of a trip in the input data */
-#define MAX_LENGTH_TRIP 170001
+#define MAX_LENGTH_TRIP 2000001
 /* Maximum length in characters of a geometry in the input data */
 #define MAX_LENGTH_GEOM 100001
 /* Maximum length in characters of a header record in the input CSV file */
@@ -302,13 +302,16 @@ int main(int argc, char ** argv) {
   rd_kafka_t *rk;
 
   rk = initialize_consumer(argv[1], argv[2], argv[3]);
+  if (rk == NULL)
+  {
+    printf(" KAFKA CLIENT HAS NOT CONFIGURED PROPERLY \n ");
+    return 1;
+  }
 
   /* You may substitute the full file path in the first argument of fopen */
 
   trip_record trip_rec;
   int no_records = 0, i;
-  FILE * f = fopen("data.csv", "w");
-  /* Read the first line of the file with the headers */
   printf("Processing trip records (one marker per trip)\n");
   int end = 0;
   /* Continue reading the file */
@@ -343,11 +346,10 @@ int main(int argc, char ** argv) {
     }
 
 
-    int read = sscanf((char *) rkm->payload, "%d,%d,%10[^,],%d,%170000[^\n]\n",
+    int read = sscanf((char*)rkm->payload, "%d,%d,%10[^,],%d,%2000000[^\n]\n",
                       &trip_rec.tripid, &trip_rec.vehid, date_buffer, &trip_rec.seq,
                       trip_buffer);
     /* Transform the string representing the trip into a temporal value */
-    fprintf(f, "%d, %d, %s, %d, %s",  trip_rec.tripid, trip_rec.vehid, date_buffer, trip_rec.seq, trip_buffer);
     trip_rec.trip = temporal_from_hexwkb(trip_buffer);
     rd_kafka_message_destroy(rkm);
 
@@ -415,6 +417,5 @@ int main(int argc, char ** argv) {
 
     /* Finalize MEOS */
     meos_finalize();
-
     return 0;
   }
