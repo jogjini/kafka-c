@@ -87,6 +87,31 @@ berlinMOD-Kafka/make all
 ./berlinMOD-Kafka/clip localhost:9092 group1 largeMessage
 ```
 
+# Kafka with large dataset
+The aisdata folder contains a script that reads AIS data from a kafka topic containing one full day of observations provided by the Danish Maritime Authority in https://web.ais.dk/aisdata/, constructs for each ship temporal values for the trip and the SOG, and outputs for each ship the MMSI, the number of records and instants used for contruct the temporal values, the distance travelled and the time-weighted average of the SOG and writes the output in a kafka topic. 
+
+## Steps to take before running the program
+As the ordering of the data that is being received/sent is very important here, we have to make sure the program receives/sends it from the kafka topic in the right order. To achieve that, just set the partitions number to 1. 
+Example :
+```bash
+  kafka_2.12-3.6.0$ bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic input
+```
+Create two different topics (with these parameters) for this program, one for the input and the other for the output.
+
+## How to run the program
+### Compile files
+```bash
+aisdata-kafka/make all
+```
+To send the ais-data that you have downloaded from here https://web.ais.dk/aisdata/, just use the producer script in the main folder. Then, run :
+```bash
+.aisdata-kafka/expand localhost:9092 group1 input output
+```
+
+
+
+
+
    
 
 
