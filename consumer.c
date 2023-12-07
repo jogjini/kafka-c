@@ -128,7 +128,6 @@ int main (int argc, char **argv)
 
       continue;
     }
-    printf("%s\n", (char*)rkm->payload);
     fprintf(newfile,"%.*s", (int)rkm->len , (const char *)rkm->payload);
 
     rd_kafka_message_destroy(rkm);
