@@ -67,7 +67,7 @@
  * available memory in your computer
  */
 /* Maximum number of records read in the CSV file */
-#define MAX_NO_RECORDS 10000000
+#define MAX_NO_RECORDS 20000000
 /* Maximum number of trips */
 #define MAX_SHIPS 6500
 /* Number of instants in a batch for printing a marker */
